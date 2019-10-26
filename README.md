@@ -42,5 +42,5 @@ $ rails server
 
 * **email** : sample@email.com
 * **password** : password
-
+* Git(HTTPSからSSH通信へ変更)
 repository check!
