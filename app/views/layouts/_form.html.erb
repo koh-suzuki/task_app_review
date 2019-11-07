@@ -1,0 +1,7 @@
+<%= f.label :name, class: "label-form" %>
+<%= f.text_field :name, class: "form-control" %>
+
+<%= f.label :task_description, class: "label-form" %>
+<%= f.text_area :task_description, class: "form-control", rows: "5" %>
+
+<%= f.submit yield(:btn_title), class: "btn btn-lg btn-primary btn-form" %>
