@@ -5,5 +5,9 @@ User.create!( name: "Sample User",
               password: "password",
               password_confirmation: "password")
               
-Task.create!(
+
+50.times do |n|
+  name = ""s
+  Task.create!( 
             )
+end
