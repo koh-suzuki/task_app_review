@@ -11,7 +11,7 @@
     <%= f.text_area :task_description, class: "form-control", rows: "5" %>
 
     <%= f.submit "更新", class: "btn btn-primary btn-form" %>
-    <%= f.submit "キャンセル", class: "btn btn-default btn-form" %>
+    <%= link_to "キャンセル", user_tasks_path(@user, @task), class: "btn btn-default btn-form" %>
   <% end %>
 	</div>
 </div>

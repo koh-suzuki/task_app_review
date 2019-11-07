@@ -32,6 +32,7 @@ class TasksController < ApplicationController
   end
   
   def destroy
+    
   end
   
   def show
