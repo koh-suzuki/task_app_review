@@ -32,7 +32,9 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    
+    @task = @user.tasks.find(params[:id])
+    @task.destroy
+    redirect_to user_tasks_path(@user, @task)
   end
   
   def show
