@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails',        '~> 5.1.6'
 gem 'rails-i18n', '~> 5.1'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 gem 'bcrypt'
 gem 'faker'
 gem 'bootstrap-sass'
