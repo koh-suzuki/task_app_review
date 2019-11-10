@@ -48,6 +48,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
     
+    # beforeフィルター
+    
     def set_user
       @user = User.find(params[:id])
     end
@@ -64,7 +66,8 @@ class UsersController < ApplicationController
     end
     
     def person
-      redirect_to root_path unless current_user
+      @user = User.find(params[:id])
+      redirect_to root_path unless current_user == @user
     end
     
     def admin_or_correct_user
