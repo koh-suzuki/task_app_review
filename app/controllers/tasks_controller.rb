@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_user
+  before_action :logged_in
   
   def new
     @task = Task.new
@@ -44,10 +45,6 @@ class TasksController < ApplicationController
   end
   
   private
-    def set_user
-      @user = User.find(params[:user_id])
-    end
-  
     def task_params
       params.require(:task).permit(:task_name, :task_description)
     end

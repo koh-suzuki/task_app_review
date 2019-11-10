@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in, only: [:index, :show, :update, :destroy]
-  before_action :admin_user?
-  before_action :person
+  before_action :admin_user?, only: [:index]
+  before_action :person, only: [:edit, :update]
   before_action :admin_or_correct_user
   
   def index
@@ -47,35 +47,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-    
-    # beforeフィルター
-    
-    def set_user
-      @user = User.find(params[:id])
-    end
-    
-    def logged_in
-      unless logged_in?
-        flash[:success] = "ログインしてください。"
-        redirect_to root_path
-      end
-    end
-    
-    def admin_user?
-      redirect_to root_path unless current_user.admin?
-    end
-    
-    def person
-      @user = User.find(params[:id])
-      redirect_to root_path unless current_user == @user
-    end
-    
-    def admin_or_correct_user
-      @user = User.find(params[:id]) if @user.blank?
-      unless current_user?(@user) || current_user.admin?
-        flash[:danger] = "編集権限がありません。"
-        redirect_to(root_url)
-      end  
-    end
-    
 end
