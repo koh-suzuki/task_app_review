@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
+  before_action :set_user
   before_action :logged_in
-  before_action :person
-  
+  before_action :correct_user
+
   def new
     @task = Task.new
   end
@@ -45,7 +46,16 @@ class TasksController < ApplicationController
   end
   
   private
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+    
     def task_params
       params.require(:task).permit(:task_name, :task_description)
+    end
+    
+    def correct_user
+      @user = User.find(params[:user_id])
+      redirect_to root_path unless current_user?(@user) 
     end
 end
