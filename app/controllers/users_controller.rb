@@ -32,9 +32,12 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user.update(user_params)
-    flash[:success] = "ユーザー情報を更新しました。"
-    redirect_to @user
+    if @user.update(user_params)
+      flash[:success] = "ユーザー情報を更新しました。"
+      redirect_to @user
+    else
+      render :edit
+    end
   end
   
   def destroy
