@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :login_user
+  before_action :login_user, only: [:new]
   
   def new
   end
