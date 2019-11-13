@@ -31,4 +31,12 @@ class ApplicationController < ActionController::Base
   def correct_user
     redirect_to root_url unless current_user?(@user)
   end
+  
+   # # ログイン中の他ユーザーの制限
+  def login_user
+    if logged_in?
+      flash[:info] = "すでにログインしています。"
+      redirect_to user_url current_user
+    end
+  end
 end

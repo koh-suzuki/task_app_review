@@ -12,7 +12,7 @@
         <% if logged_in? && current_user.admin? %>
           <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
         <% elsif logged_in? %>
-          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success", disabled: true %>
+          <%= link_to "アカウント作成", root_path, class: "btn btn-lg btn-success", readonly: true, disabled: true %>
         <% else %>
           <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
         <% end %>
