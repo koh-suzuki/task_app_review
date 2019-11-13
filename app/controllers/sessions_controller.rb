@@ -22,4 +22,12 @@ class SessionsController < ApplicationController
     flash[:success] = 'ログアウトしました。'
     redirect_to root_url
   end
+  
+   # # ログイン中の他ユーザーの制限
+  def login_user
+    if logged_in?
+      flash[:info] = "すでにログインしています。"
+      redirect_to user_url current_user
+    end
+  end
 end

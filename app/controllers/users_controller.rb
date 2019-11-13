@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user?, only: [:index]
   before_action :person, only: [:edit, :update]
   before_action :admin_or_correct_user, only: [:show]
-  before_action :login_user, only: [:new, :create]
+  before_action :login_user_not_admin, only: [:new, :create]
   
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
@@ -54,5 +54,13 @@ class UsersController < ApplicationController
     
     def set_user
       @user = User.find(params[:id])
+    end
+    
+     # # ログイン中の他ユーザーの制限
+    def login_user_not_admin
+      if logged_in? == !current_user.admin
+        flash[:info] = "すでにログインしています。"
+        redirect_to user_url current_user
+      end
     end
 end
